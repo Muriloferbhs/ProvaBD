@@ -109,88 +109,108 @@ CREATE TABLE DIAGNOSTICO (
 -- populando os bancos:
 
 -- hospital
-INSERT INTO HOSPITAL VALUES (1, 'Hospital 1', 'Av. 1, 255 - SP', '11330010', '60975198000112', 'email@exemplo.com', 'publico');
-INSERT INTO HOSPITAL VALUES (2, 'Hospital 2', 'Av. 2, 627 - SP', '21519000', '53153643000101', 'email2@exemplo.com', 'privado');
-INSERT INTO HOSPITAL VALUES (3, 'Hospital 3', 'Rua 3, 91 - SP', '31550100', '61585865000101', 'email3@exemplo.com', 'privado');
-INSERT INTO HOSPITAL VALUES (4, 'Hospital 4', 'Rua 4, 400 - SP', '11444200', '89543210000156', 'email4@exemplo.com', 'publico');
+INSERT INTO HOSPITAL (id_hospital,nome, endereço, telefone, cnpj, email, tipo)
+VALUES 
+(1, 'Hospital 1', 'Av. 1, 255 - SP', '11330010', '60975198000112', 'email@exemplo.com', 'publico'),
+(2, 'Hospital 2', 'Av. 2, 627 - SP', '21519000', '53153643000101', 'email2@exemplo.com', 'privado'),
+(3, 'Hospital 3', 'Rua 3, 91 - SP', '31550100', '61585865000101', 'email3@exemplo.com', 'privado'),
+(4, 'Hospital 4', 'Rua 4, 400 - SP', '11444200', '89543210000156', 'email4@exemplo.com', 'publico');
 
 -- laboratorios
-INSERT INTO LABORATORIO VALUES (1, 'Laboratorio1', 'Rua 1, 100 - SP', '110001', 'email1@exemplo.com', '12345678000199', 'publica');
-INSERT INTO LABORATORIO VALUES (2, 'Laboratorio2', 'Av. 1, 500 - SP', '110002', 'email2@exemplo.com', '98765432000155', 'privada');
-INSERT INTO LABORATORIO VALUES (3, 'Laboratorio3', 'Rua 2, 340 - SP', '110003', 'email3@exemplo.com', '11223344000177', 'publica');
-INSERT INTO LABORATORIO VALUES (4, 'Laboratorio4', 'Rua 3, 20 - MG', '310001', 'email4@exemplo.com', '55667788000133', 'privada');
+INSERT INTO LABORATORIO (id_laboratorio,nome,endereco,telefone,email,cnpj,tipo)
+VALUES 
+(1, 'Laboratorio1', 'Rua 1, 100 - SP', '110001', 'email1@exemplo.com', '12345678000199', 'publica'),
+(2, 'Laboratorio2', 'Av. 1, 500 - SP', '110002', 'email2@exemplo.com', '98765432000155', 'privada'),
+(3, 'Laboratorio3', 'Rua 2, 340 - SP', '110003', 'email3@exemplo.com', '11223344000177', 'publica'),
+(4, 'Laboratorio4', 'Rua 3, 20 - MG', '310001', 'email4@exemplo.com', '55667788000133', 'privada');
 
 -- hospital_laboratorios
-INSERT INTO HOSPITAL_LABORATORIO VALUES (1, 1, '2024-01-10', 'Concluído', 50);
-INSERT INTO HOSPITAL_LABORATORIO VALUES (1, 2, '2024-02-15', 'Em andamento', 30);
-INSERT INTO HOSPITAL_LABORATORIO VALUES (2, 3, '2024-03-01', 'Concluído', 80);
-INSERT INTO HOSPITAL_LABORATORIO VALUES (3, 4, '2024-03-20', 'Pendente', 10);
-INSERT INTO HOSPITAL_LABORATORIO VALUES (4, 1, '2024-04-05', 'Concluído', 25);
+INSERT INTO HOSPITAL_LABORATORIO (id_hospital,id_laboratorio,data_solicitacao,status,qtd_exames)
+VALUES
+(1, 1, '2024-01-10', 'Concluído', 50),
+(1, 2, GETDATE(), 'Em andamento', 30),
+(2, 3, '2024-03-01', 'Concluído', 80),
+(3, 4, GETDATE(), 'Pendente', 10),
+(4, 1, '2024-04-05', 'Concluído', 25);
 
 -- ambulatorios
-INSERT INTO AMBULATORIO VALUES (1, 1, 'Ambulatório 1', 100, '1° andar');
-INSERT INTO AMBULATORIO VALUES (2, 1, 'Ambulatório 2', 60, '2° andar');
-INSERT INTO AMBULATORIO VALUES (3, 2, 'Ambulatório 3', 50, '3° andar');
-INSERT INTO AMBULATORIO VALUES (4, 3, 'Ambulatório 4', 40, '2° andar');
-INSERT INTO AMBULATORIO VALUES (5, 4, 'Ambulatório 5', 80, 'Térreo');
+INSERT INTO AMBULATORIO (id_ambulatorio,id_hospital,nome, capacidade, andar)
+VALUES
+(1, 1, 'Ambulatório 1', 100, '1° andar'),
+(2, 1, 'Ambulatório 2', 60, '2° andar'),
+(3, 2, 'Ambulatório 3', 50, '3° andar'),
+(4, 3, 'Ambulatório 4', 40, '2° andar'),
+(5, 4, 'Ambulatório 5', 80, 'Térreo');
 
 -- medicos
-INSERT INTO MEDICO VALUES (1, 1, 'Dr. Carlos', 'Cardiologia', 'CRM/SP-12345', '119887766', 'carlos@exemplo.com');
-INSERT INTO MEDICO VALUES (2, 1, 'Dra. Ana', 'Clínica Geral','CRM/SP-23456', '119776655', 'ana@exemplo.com');
-INSERT INTO MEDICO VALUES (3, 2, 'Dr. Roberto', 'Oncologia', 'CRM/SP-34567', '119665544', 'roberto@exemplo.com');
-INSERT INTO MEDICO VALUES (4, 3, 'Dra. Patrícia', 'Neurologia', 'CRM/SP-45678', '119554433', 'patricia@exemplo.com');
-INSERT INTO MEDICO VALUES (5, 4, 'Dr. Marcos', 'Emergência', 'CRM/SP-56789', '119443322', 'marcos@exemplo.com');
-INSERT INTO MEDICO VALUES (6, 1, 'Dra. Juliana', 'Pediatria', 'CRM/SP-67890', '119332211', 'juliana@exemplo.com');
+INSERT INTO MEDICO (id_medico,id_hospital,nome,especialidade,crm,telefone,email)
+VALUES 
+(1, 1, 'Dr. Carlos', 'Cardiologia', 'CRM/SP-12345', '119887766', 'carlos@exemplo.com'),
+(2, 1, 'Dra. Ana', 'Clínica Geral','CRM/SP-23456', '119776655', 'ana@exemplo.com'),
+(3, 2, 'Dr. Roberto', 'Oncologia', 'CRM/SP-34567', '119665544', 'roberto@exemplo.com'),
+(4, 3, 'Dra. Patrícia', 'Neurologia', 'CRM/SP-45678', '119554433', 'patricia@exemplo.com'),
+(5, 4, 'Dr. Marcos', 'Emergência', 'CRM/SP-56789', '119443322', 'marcos@exemplo.com'),
+(6, 1, 'Dra. Juliana', 'Pediatria', 'CRM/SP-67890', '119332211', 'juliana@exemplo.com');
 
 -- pacientes
-INSERT INTO PACIENTE VALUES (1, 1, 'João', 'Rua A, 10 - SP', '12345678901', '1980-05-12', '119111111', 'joao@exemplo.com',    'M');
-INSERT INTO PACIENTE VALUES (2, 1, 'Maria', 'Rua B, 20 - SP', '23456789012', '1990-08-25', '119222222', 'maria@exemplo.com',   'F');
-INSERT INTO PACIENTE VALUES (3, 2, 'Pedro', 'Rua C, 30 - SP', '34567890123', '1975-11-30', '119333333', 'pedro@exemplo.com',   'M');
-INSERT INTO PACIENTE VALUES (4, 3, 'Lucia', 'Rua D, 40 - SP', '45678901234', '2000-02-14', '119444444', 'lucia@exemplo.com',   'F');
-INSERT INTO PACIENTE VALUES (5, 4, 'Carlos', 'Rua E, 50 - SP', '56789012345', '1965-07-19', '119555555', 'carlos@exemplo.com',  'M');
-INSERT INTO PACIENTE VALUES (6, 5, 'Ana', 'Rua F, 60 - SP', '67890123456', '1998-03-08', '119666666', 'anapaula@exemplo.com','F');
-INSERT INTO PACIENTE VALUES (7, 1, 'Roberto', 'Rua G, 70 - SP', '78901234567', '1988-09-22', '119777777', 'roberto@exemplo.com', 'M');
-INSERT INTO PACIENTE VALUES (8, 2, 'Fernanda', 'Rua H, 80 - SP', '89012345678', '1972-12-01', '119888888', 'fernanda@exemplo.com','F');
+INSERT INTO PACIENTE (id_paciente,id_ambulatorio,nome,endereço,telefone,data_nasc,cpf, email, sexo)
+VALUES 
+(1, 1, 'João', 'Rua A, 10 - SP', '12345678901', '1980-05-12', '119111111', 'joao@exemplo.com',    'M'),
+(2, 1, 'Maria', 'Rua B, 20 - SP', '23456789012', '1990-08-25', '119222222', 'maria@exemplo.com',   'F'),
+(3, 2, 'Pedro', 'Rua C, 30 - SP', '34567890123', '1975-11-30', '119333333', 'pedro@exemplo.com',   'M'),
+(4, 3, 'Lucia', 'Rua D, 40 - SP', '45678901234', '2000-02-14', '119444444', 'lucia@exemplo.com',   'F'),
+(5, 4, 'Carlos', 'Rua E, 50 - SP', '56789012345', '1965-07-19', '119555555', 'carlos@exemplo.com',  'M'),
+(6, 5, 'Ana', 'Rua F, 60 - SP', '67890123456', '1998-03-08', '119666666', 'anapaula@exemplo.com','F'),
+(7, 1, 'Roberto', 'Rua G, 70 - SP', '78901234567', '1988-09-22', '119777777', 'roberto@exemplo.com', 'M'),
+(8, 2, 'Fernanda', 'Rua H, 80 - SP', '89012345678', '1972-12-01', '119888888', 'fernanda@exemplo.com','F');
 
 -- pessoal de apoio
-INSERT INTO PESSOAL_APOIO VALUES (1, 1, 'Marcos', 'Enfermeiro', '11122233300', '119100001');
-INSERT INTO PESSOAL_APOIO VALUES (2, 1, 'Renata', 'Técnico Lab.', '22233344401', '119100002');
-INSERT INTO PESSOAL_APOIO VALUES (3, 2, 'Paulo', 'Recepcionista', '33344455502', '119100003');
-INSERT INTO PESSOAL_APOIO VALUES (4, 3, 'Carla', 'Auxiliar Admin.', '44455566603', '119100004');
-INSERT INTO PESSOAL_APOIO VALUES (5, 4, 'Bruno', 'Enfermeiro', '55566677704', '119100005');
-INSERT INTO PESSOAL_APOIO VALUES (6, 5, 'Silvia', 'Recepcionista', '66677788805', '119100006');
+INSERT INTO PESSOAL_APOIO (id_pessoal,id_ambulatorio,nome,cargo,cpf,telefone)
+VALUES 
+(1, 1, 'Marcos', 'Enfermeiro', '11122233300', '119100001'),
+(2, 1, 'Renata', 'Técnico Lab.', '22233344401', '119100002'),
+(3, 2, 'Paulo', 'Recepcionista', '33344455502', '119100003'),
+(4, 3, 'Carla', 'Auxiliar Admin.', '44455566603', '119100004'),
+(5, 4, 'Bruno', 'Enfermeiro', '55566677704', '119100005'),
+(6, 5, 'Silvia', 'Recepcionista', '66677788805', '119100006');
 
 -- consulta
-INSERT INTO CONSULTA VALUES (1, 1, '2024-01-15', '08:00', 'Realizada');
-INSERT INTO CONSULTA VALUES (1, 2, '2024-01-15', '09:00', 'Realizada');
-INSERT INTO CONSULTA VALUES (2, 3, '2024-02-10', '10:30', 'Realizada');
-INSERT INTO CONSULTA VALUES (3, 4, '2024-02-20', '14:00', 'Realizada');
-INSERT INTO CONSULTA VALUES (4, 5, '2024-03-05', '11:00', 'Cancelada');
-INSERT INTO CONSULTA VALUES (5, 6, '2024-03-12', '16:00', 'Realizada');
-INSERT INTO CONSULTA VALUES (6, 7, '2024-04-01', '08:30', 'Agendada');
-INSERT INTO CONSULTA VALUES (1, 8, '2024-04-02', '09:30', 'Agendada');
-INSERT INTO CONSULTA VALUES (2, 1, '2024-04-10', '10:00', 'Realizada');
-INSERT INTO CONSULTA VALUES (3, 2, '2024-04-15', '15:00', 'Realizada');
+INSERT INTO CONSULTA (id_medico,id_paciente,data_consulta,hora_consulta,status)
+VALUES 
+(1, 1, '2024-01-15', '08:00', 'Realizada'),
+(1, 2, '2024-01-15', '09:00', 'Realizada'),
+(2, 3, '2024-02-10', '10:30', 'Realizada'),
+(3, 4, '2024-02-20', '14:00', 'Realizada'),
+(4, 5, '2024-03-05', '11:00', 'Cancelada'),
+(5, 6, '2024-03-12', '16:00', 'Realizada'),
+(6, 7, '2024-04-01', '08:30', 'Agendada'),
+(1, 8, '2024-04-02', '09:30', 'Agendada'),
+(2, 1, '2024-04-10', '10:00', 'Realizada'),
+(3, 2, '2024-04-15', '15:00', 'Realizada');
 
 -- exames
-INSERT INTO EXAME VALUES (1, 1, 1, 'exame 1', '2024-01-20', 'Normal', 'Concluído', NULL);
-INSERT INTO EXAME VALUES (2, 2, 2, 'exame 2', '2024-01-22', 'Alterado', 'Concluído', 'Glicemia em jejum alta');
-INSERT INTO EXAME VALUES (3, 3, 1, 'exame 3', '2024-02-12', 'Normal', 'Concluído', NULL);
-INSERT INTO EXAME VALUES (4, 4, 3, 'exame 4', '2024-02-25', 'Negativo', 'Concluído', NULL);
-INSERT INTO EXAME VALUES (5, 5, 4, 'exame 5', '2024-03-10', NULL, 'Em andamento', 'Aguardando laudo');
-INSERT INTO EXAME VALUES (6, 6, 2, 'exame 6', '2024-03-15', 'Normal', 'Concluído', NULL);
-INSERT INTO EXAME VALUES (7, 7, 1, 'exame 7', '2024-04-02', 'Elevado', 'Concluído', 'Provável infecção');
-INSERT INTO EXAME VALUES (8, 8, 3, 'exame 8', '2024-04-05','Normal', 'Concluído', NULL);
+INSERT INTO EXAME (id_exame,id_paciente,id_laboratorio,tipo,data_realizacao,resultado,status,observação)
+VALUES
+(1, 1, 1, 'exame 1', '2024-01-20', 'Normal', 'Concluído', NULL),
+(2, 2, 2, 'exame 2', '2024-01-22', 'Alterado', 'Concluído', 'Glicemia em jejum alta'),
+(3, 3, 1, 'exame 3', '2024-02-12', 'Normal', 'Concluído', NULL),
+(4, 4, 3, 'exame 4', '2024-02-25', 'Negativo', 'Concluído', NULL),
+(5, 5, 4, 'exame 5', '2024-03-10', NULL, 'Em andamento', 'Aguardando laudo'),
+(6, 6, 2, 'exame 6', '2024-03-15', 'Normal', 'Concluído', NULL),
+(7, 7, 1, 'exame 7', '2024-04-02', 'Elevado', 'Concluído', 'Provável infecção'),
+(8, 8, 3, 'exame 8', '2024-04-05','Normal', 'Concluído', NULL);
 
 -- diagnostico
-INSERT INTO DIAGNOSTICO VALUES (1, 1, 'Diagnostico 1', '2024-01-16', 'Dr. Carlos', 'Moderada');
-INSERT INTO DIAGNOSTICO VALUES (2, 2, 'Diagnostico 2', '2024-01-23', 'Dra. Ana', 'Alta');
-INSERT INTO DIAGNOSTICO VALUES (3, 3, 'Diagnostico 3', '2024-02-13', 'Dr. Roberto', 'Moderada');
-INSERT INTO DIAGNOSTICO VALUES (4, 4, 'Diagnostico 4', '2024-02-26', 'Dr. Roberto', 'Baixa');
-INSERT INTO DIAGNOSTICO VALUES (5, 6, 'Diagnostico 5', '2024-03-16', 'Dr. Marcos', 'Baixa');
-INSERT INTO DIAGNOSTICO VALUES (6, 7, 'Diagnostico 6', '2024-04-03', 'Dra. Ana', 'Moderada');
-INSERT INTO DIAGNOSTICO VALUES (7, 8, 'Diagnostico 7', '2024-04-06', 'Dr. Carlos', 'Alta');
-INSERT INTO DIAGNOSTICO VALUES (8, 5, 'Diagnostico 8', '2024-03-08', 'Dra. Patrícia', 'Baixa');
+INSERT INTO DIAGNOSTICO (id_diagnostico,id_paciente,descricao,data,medico_responsavel,gravidade)
+VALUES
+(1, 1, 'Diagnostico 1', '2024-01-16', 'Dr. Carloss', 'Moderada'),
+(2, 2, 'Diagnostico 2', '2024-01-23', 'Dra. Ana', 'Alta'),
+(3, 3, 'Diagnostico 3', '2024-02-13', 'Dr. Roberto', 'Moderada'),
+(4, 4, 'Diagnostico 4', '2024-02-26', 'Dr. Roberto', 'Baixa'),
+(5, 6, 'Diagnostico 5', '2024-03-16', 'Dr. Marcos', 'Baixa'),
+(6, 7, 'Diagnostico 6', '2024-04-03', 'Dra. Ana', 'Moderada'),
+(7, 8, 'Diagnostico 7', '2024-04-06', 'Dr. Carlos', 'Alta'),
+(8, 5, 'Diagnostico 8', '2024-03-08', 'Dra. Patrícia', 'Baixa');
 
 
 SELECT
