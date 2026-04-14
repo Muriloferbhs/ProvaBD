@@ -183,7 +183,7 @@ INSERT INTO EXAME VALUES (7, 7, 1, 'exame 7', '2024-04-02', 'Elevado', 'Concluí
 INSERT INTO EXAME VALUES (8, 8, 3, 'exame 8', '2024-04-05','Normal', 'Concluído', NULL);
 
 -- diagnostico
-INSERT INTO DIAGNOSTICO VALUES (1, 1, 'Diagnostico 1', '2024-01-16', 'Dr. Carloss', 'Moderada');
+INSERT INTO DIAGNOSTICO VALUES (1, 1, 'Diagnostico 1', '2024-01-16', 'Dr. Carlos', 'Moderada');
 INSERT INTO DIAGNOSTICO VALUES (2, 2, 'Diagnostico 2', '2024-01-23', 'Dra. Ana', 'Alta');
 INSERT INTO DIAGNOSTICO VALUES (3, 3, 'Diagnostico 3', '2024-02-13', 'Dr. Roberto', 'Moderada');
 INSERT INTO DIAGNOSTICO VALUES (4, 4, 'Diagnostico 4', '2024-02-26', 'Dr. Roberto', 'Baixa');
