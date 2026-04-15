@@ -1,0 +1,8 @@
+Explique quais características da aplicação poderiam influir na decisão de incluir ou não cada um desses conjuntos 
+adicionais de entidades.
+
+R= A inclusão das entidades curso, seção e sala depende da necessidade de organização e detalhamento do sistema. 
+Elas são usadas quando é preciso armazenar mais informações, evitar repetição de dados e 
+reutilizar essas informações em vários exames. A seção é considerada entidade fraca por depender do curso. 
+Caso o sistema seja simples e não exija muitos detalhes, esses elementos podem ser apenas atributos da entidade exame, 
+deixando o modelo mais simples. 
