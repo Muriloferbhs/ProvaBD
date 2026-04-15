@@ -1,0 +1,7 @@
+MODELO LÓGICO
+usuario (id_us (PK), nome_us, telefone_us, email_us)
+livro (id_li (PK), titulo_li, descricao_li)
+autor (id_au (PK), nome_au)
+livro_autor (id_li (PK/FK), id_au (PK/FK))
+exemplar (id_ex (PK), id_li (FK))
+emprestimo (id_emp (PK), id_us (FK), id_ex (FK), dt_em, dt_prev, ativo)
