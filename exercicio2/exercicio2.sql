@@ -7,7 +7,7 @@ NumeroCurso INT
 
 CREATE TABLE Sala (
 IDSala INT PRIMARY KEY,
-NumeroSala INT,
+numero_sala INT,
 capacidade INT,
 predio NVARCHAR(100)
 );
@@ -29,7 +29,6 @@ FOREIGN KEY (IDSecao) REFERENCES Secao(IDSecao),
 FOREIGN KEY (IDSala) REFERENCES Sala(IDSala)
 );
 
-
 INSERT INTO Curso VALUES
 (1, 'Banco de Dados', 'TI', 101),
 (2, 'Algoritmos', 'TI', 102),
@@ -47,7 +46,6 @@ INSERT INTO Sala VALUES
 (5, 505, 60, 'Bloco E'),
 (6, 606, 45, 'Bloco F');
 
-
 INSERT INTO Secao VALUES
 (1, 1, 'Noturno', 1),
 (2, 2, 'Diurno', 2),
@@ -58,6 +56,7 @@ INSERT INTO Secao VALUES
 (7, 1, 'Noturno', 6),
 (8, 2, 'Diurno', 7);
 
+SET DATEFORMAT ymd;
 
 INSERT INTO Exame VALUES
 (1, '2026-06-10 19:00', 1, 1),
@@ -71,7 +70,6 @@ INSERT INTO Exame VALUES
 (9, '2026-06-18 19:00', 1, 4),
 (10, '2026-06-19 08:00', 3, 5);
 
-
 SELECT
 	Exame.IDExame AS id_exame,
 	Exame.horario AS horario_exame,
@@ -79,7 +77,7 @@ SELECT
 	Curso.departamento AS departamento,
 	Secao.numero_secao AS numero_secao,
 	Secao.programa AS programa,
-	Sala.NumeroSala AS numero_sala,
+	Sala.numero_sala AS numero_sala,
 	Sala.predio AS predio,
 	Sala.capacidade AS capacidade_sala
 FROM Exame
@@ -93,10 +91,14 @@ SELECT
 	Secao.numero_secao AS numero_secao,
 	Secao.programa AS programa,
 	Exame.horario AS horario_exame,
-	Sala.NumeroSala AS numero_sala,
+	Sala.numero_sala AS numero_sala,
 	Sala.predio AS predio
 FROM Secao
 LEFT JOIN Curso ON Secao.IDCurso = Curso.IDCurso
 LEFT JOIN Exame ON Exame.IDSecao = Secao.IDSecao
 LEFT JOIN Sala ON Exame.IDSala = Sala.IDSala;
 
+DROP TABLE Exame;
+DROP TABLE Secao;
+DROP TABLE Curso;
+DROP TABLE Sala;
