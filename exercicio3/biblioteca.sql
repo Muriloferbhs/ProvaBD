@@ -141,6 +141,16 @@ JOIN livro_autor ON livro.id_li = livro_autor.id_li
 RIGHT JOIN autor ON livro_autor.id_au = autor.id_au
 ORDER BY livro.titulo_li;
 
+SELECT 
+    livro.titulo_li          AS titulo_livro,
+    COUNT(exemplar.id_ex)    AS total_exemplares,
+    SUM(CASE WHEN exemplar.disponibilidade_ex = 1 THEN 1 ELSE 0 END) AS disponiveis,
+    SUM(CASE WHEN exemplar.disponibilidade_ex = 0 THEN 1 ELSE 0 END) AS emprestados
+FROM livro
+INNER JOIN exemplar ON livro.id_li = exemplar.id_li
+GROUP BY livro.titulo_li
+ORDER BY livro.titulo_li;
+
 
 
 DROP TABLE IF EXISTS emprestimo;
