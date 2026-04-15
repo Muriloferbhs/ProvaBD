@@ -42,33 +42,30 @@ INSERT INTO Secao VALUES (1, 1, 'Noturno', 1),
 INSERT INTO Exame VALUES (1, '2026-06-10 19:00', 1, 1),
 (2, '2026-06-11 08:00', 2, 2);
 
-SELECT
-    e.IDExame,
-    e.horario,
-    c.nome          AS curso,
-    c.departamento,
-    sec.numero_secao,
-    sec.programa,
-    s.NumeroSala,
-    s.predio,
-    s.capacidade
-FROM Exame e
-INNER JOIN Secao  sec ON e.IDSecao  = sec.IDSecao
-INNER JOIN Curso  c   ON sec.IDCurso = c.IDCurso
-INNER JOIN Sala   s   ON e.IDSala   = s.IDSala
-ORDER BY e.horario;
+SELECT 
+	Exame.IDExame AS id_exame,
+	Exame.horario AS horario_exame,
+	Curso.nome AS nome_curso,
+	Curso.departamento AS departamento,
+	Secao.numero_secao AS numero_secao,
+	Secao.programa AS programa,
+	Sala.NumeroSala AS numero_sala,
+	Sala.predio AS predio,
+	Sala.capacidade AS capacidade_sala
+FROM Exame
+INNER JOIN Secao ON Exame.IDSecao = Secao.IDSecao
+INNER JOIN Curso ON Secao.IDCurso = Curso.IDCurso
+INNER JOIN Sala ON Exame.IDSala = Sala.IDSala;
 
-
-SELECT
-    c.nome          AS curso,
-    c.NumeroCurso,
-    sec.numero_secao,
-    sec.programa,
-    e.horario,
-    s.NumeroSala,
-    s.predio
-FROM Secao sec
-LEFT JOIN Curso c  ON sec.IDCurso = c.IDCurso
-LEFT JOIN Exame e  ON e.IDSecao   = sec.IDSecao
-LEFT JOIN Sala  s  ON e.IDSala    = s.IDSala
-ORDER BY c.nome, sec.numero_secao;
+SELECT 
+	Curso.nome AS nome_curso,
+	Curso.NumeroCurso AS numero_curso,
+	Secao.numero_secao AS numero_secao,
+	Secao.programa AS programa,
+	Exame.horario AS horario_exame,
+	Sala.NumeroSala AS numero_sala,
+	Sala.predio AS predio
+FROM Secao
+LEFT JOIN Curso ON Secao.IDCurso = Curso.IDCurso
+LEFT JOIN Exame ON Exame.IDSecao = Secao.IDSecao
+LEFT JOIN Sala ON Exame.IDSala = Sala.IDSala;
