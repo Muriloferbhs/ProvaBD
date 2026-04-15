@@ -153,10 +153,10 @@ ORDER BY livro.titulo_li;
 
 
 
-DROP TABLE IF EXISTS emprestimo;
-DROP TABLE IF EXISTS livro_autor;
-DROP TABLE IF EXISTS exemplar;
+DROP TABLE emprestimo;
+DROP TABLE livro_autor;
+DROP TABLE exemplar;
 
-DROP TABLE IF EXISTS usuario;
-DROP TABLE IF EXISTS livro;
-DROP TABLE IF EXISTS autor;
+DROP TABLE usuario;
+DROP TABLE livro;
+DROP TABLE autor;
